@@ -13,7 +13,7 @@ export default function Home() {
         <div className="home__row">
           <Product
             id="5"
-            title="the len start"
+            title="Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer with K-bearter, Dough Hook and Whisk, 5 Litre Glass Bowl"
             price={19.99}
             image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
             rating={3}
