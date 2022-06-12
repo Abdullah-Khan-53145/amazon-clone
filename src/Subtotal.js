@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Subtotal.css";
 import CurrencyFormat from "react-currency-format";
 import { useStateValue } from "./StateProvider";
 import { getBasketTotal } from "./reducer";
-export default function Subtotal() {
+import { Link, useNavigate } from "react-router-dom";
+export default function Subtotal({ status }) {
   const [{ basket }, dispatch] = useStateValue();
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+  const handleClick = () => {
+    if (status === "Confrim Order") {
+      setMessage("Order Confrimed Successfully");
+      setTimeout(() => {
+        setMessage("");
+        dispatch({
+          type: "EMPTY_BASKET",
+        });
+        navigate("/");
+      }, 2000);
+    }
+  };
 
   return (
     <div className="subtotal">
@@ -14,10 +29,13 @@ export default function Subtotal() {
             <p>
               Subtotal({basket.length} item): <strong>{value}</strong>
             </p>
-            <small className="subtotal__gift">
-              <input type="checkbox" />
-              This order contains a gift
-            </small>
+            {status === "Proceed to checkout" && (
+              <small className="subtotal__gift">
+                <input type="checkbox" />
+                This order contains a gift
+              </small>
+            )}
+            <small style={{ color: "green" }}>{message}</small>
           </>
         )}
         decimalScale={2}
@@ -26,7 +44,11 @@ export default function Subtotal() {
         thousandSeparator={true}
         prefix={"$"}
       />
-      <button>Proceed to checkout</button>
+      <button onClick={handleClick}>
+        <Link to={status === "Proceed to checkout" && "/payment"}>
+          {status}
+        </Link>
+      </button>
     </div>
   );
 }

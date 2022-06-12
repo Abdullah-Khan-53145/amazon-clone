@@ -3,9 +3,8 @@ import "./Checkout.css";
 import Subtotal from "./Subtotal";
 import { useStateValue } from "./StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
-import { InsertEmoticon } from "@mui/icons-material";
 export default function CheckOut() {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
   return (
     <div className="checkout">
       <div className="checkout__left">
@@ -15,7 +14,9 @@ export default function CheckOut() {
           className="checkout__ad"
         />
         <div>
-          <h2 className="checkout__title">Your shoping Basket</h2>
+          <h2 className="checkout__title">
+            Hi, {user?.email} your shoping Basket
+          </h2>
           {basket.map((element, index) => (
             <CheckoutProduct
               id={element.id}
@@ -28,7 +29,7 @@ export default function CheckOut() {
         </div>
       </div>
       <div className="checkout__right">
-        <Subtotal />
+        <Subtotal status="Proceed to checkout" />
       </div>
     </div>
   );

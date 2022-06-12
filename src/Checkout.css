@@ -14,3 +14,10 @@
   padding: 10px;
   border-bottom: 1px solid lightgray;
 }
+
+@media (max-width: 500px) {
+  .checkout {
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+}

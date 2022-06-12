@@ -63,3 +63,18 @@
 .header__backetCount {
   margin: 0 10px;
 }
+
+@media (max-width: 500px) {
+  .header {
+    flex-direction: column;
+  }
+  .header__nav {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #131921;
+  }
+}
